@@ -8,22 +8,20 @@
 <form method="POST" action="{{route('roles.store')}}">
   {{ csrf_field() }}
   <div class="form-group">
-    <label for="formGroupExampleInput">ROLE NAME</label>
+    <label >ROLE NAME</label>
     <input type="text"
            name="name"
            value="{{old('name')}}"
            class="form-control"
-           id="formGroupExampleInput"
-           placeholder="Example input">
+           placeholder="super_admin">
   </div>
   <div class="form-group">
-    <label for="formGroupExampleInput2">ROLE LABEL</label>
+    <label >ROLE LABEL</label>
     <input type="text"
            name="label"
            value="{{old('label')}}"
            class="form-control"
-           id="formGroupExampleInput2"
-           placeholder="Another input">
+           placeholder="Site Manager">
   </div>
     <button name="submit" class="btn btn-info btn-xs">Add a Role</button>
 </form>
@@ -31,19 +29,27 @@
 <div class="col-sm-6">
   <h3>ROLES LIST</h3>
   @if(!empty($roles))
-  <ul class="list-group">
+  <div class="table-responsive table-condensed">
+  <table class="table">
   @foreach($roles as $role)
-    <li class="list-group-item">{{$role->label}}
-      <span class="badge  alert-danger">
-        <form method="DELETE" action="{{route('roles.destroy',$role->id)}}">
-        <button >DELET</button></span>
-  </form>
-      </li>
-
+    <tr>
+      <td>{{$role->label}}</td>
+        <td><a href="{{route('roles.edit',$role->id)}}"
+               class="btn btn-info ">
+          <span class="glyphicon glyphicon-edit"></span></a></td>
+      <td>
+     <form method="POST" action="{{route('roles.destroy',$role->id)}}">
+       {{method_field('DELETE')}}
+       {{ csrf_field() }}
+       <button type="submit" >DELETE </button>
+     </form>
+      </td>
+    </tr>
   @endforeach
-    </ul>
-  @endif
+</table>
+
 </div><!-- end roles list -->
+  @endif
 </div> <!--end of row class -->
 <div class="row">
   <div class="col-sm-6">
