@@ -23,7 +23,7 @@
            class="form-control"
            placeholder="Site Manager">
   </div>
-    <button name="submit" class="btn btn-info btn-xs">Add a Role</button>
+    <button name="submit" class="btn btn-info btn-block">Add a Role</button>
 </form>
 </div><!---- form colomn -->
 <div class="col-sm-6">
@@ -54,21 +54,6 @@
 </div><!-- end roles list -->
   @endif
 </div> <!--end of row class -->
-<div class="row">
-  <div class="col-sm-6">
-@if($errors->count() > 0)
-    <div class="alert alert-danger">
-
-<ul class="list-group">
-@foreach($errors->all() as $error)
-  <li class="group-list-item ">{{$error}}</li>
-@endforeach
-</ul>
-
-</div><!-- end of errors div -->
-@endif
-</div><!-- end row colm -->
-  </div> <!-- end class row -->
-
+@include('errors.list')
 </div><!-- container -->
 @endsection

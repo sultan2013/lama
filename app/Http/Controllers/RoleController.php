@@ -33,10 +33,16 @@ public function create(){
     }
 // edit a certain role form method
     public function edit($id){
-      return "edit form";
+      $_role = Role::findOrFail($id);
+      $roles = Role::all();
+      return view('roles.edit',compact('_role','roles'));
     }
-    public function update(Request $request){
-      return "udate method";
+    public function update($id ,CreateRoleRequest $request){
+
+     $role = Role::findOrFail($id);
+     $role->update($request->all());
+     return redirect('roles');
+
     }
     public function show($id){
       return 'show method';
