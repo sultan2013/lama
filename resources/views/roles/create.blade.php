@@ -41,7 +41,10 @@
      <form method="POST" action="{{route('roles.destroy',$role->id)}}">
        {{method_field('DELETE')}}
        {{ csrf_field() }}
-       <button type="submit" >DELETE </button>
+       <button type="submit"
+                class="btn btn-danger ">
+       <span class="glyphicon glyphicon-trash"></span>
+     </button>
      </form>
       </td>
     </tr>
