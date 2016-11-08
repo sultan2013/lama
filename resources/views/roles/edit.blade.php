@@ -2,6 +2,12 @@
 
 @section('content')
 <div class="container">
+
+  <!--- alert for add new role update new role or delete new role -->
+  @include('flash::message')
+  @include('errors.list')
+  <!-- end of flash message --->
+
   <div class="row">
     <div class="col-sm-6">
 <h3>EDIT A ROLE</h3>
@@ -55,6 +61,6 @@
 </div><!-- end roles list -->
   @endif
 </div> <!--end of row class -->
-@include('errors.list')
+
 </div><!-- container -->
 @endsection

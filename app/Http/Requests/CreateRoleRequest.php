@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Auth;
 
 class CreateRoleRequest extends FormRequest
 {
@@ -25,7 +26,7 @@ class CreateRoleRequest extends FormRequest
     {
         return [
             //
-            'name'=>'required |min:3 | max:20',
+            'name'=>'required |min:3 | max:20 ',
             'label'=>'required | min:3 | max:20',
         ];
     }

@@ -88,8 +88,10 @@
 
         @yield('content')
     </div>
-
-    <!-- Scripts -->
     <script src="/js/app.js"></script>
 </body>
+<script>
+$('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+</script>
+<!-- Scripts -->
 </html>

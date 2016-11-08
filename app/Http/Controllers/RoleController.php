@@ -7,7 +7,15 @@ use App\Http\Requests\CreateRoleRequest;
 use App\Role;
 class RoleController extends Controller
 {
-    //
+  /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
 
 
 // index method
@@ -29,6 +37,7 @@ public function create(){
     public function store(CreateRoleRequest $request){
 
       $role = Role::create($request->all());
+      flash('The role has been created successfully', 'success');
       return back();
     }
 // edit a certain role form method
@@ -41,13 +50,18 @@ public function create(){
 
      $role = Role::findOrFail($id);
      $role->update($request->all());
-     return redirect('roles');
+     flash('The role has been updated successfully', 'success');
+     return redirect('roles/create');
 
     }
     public function show($id){
       return 'show method';
     }
     public function destroy($id){
-      return 'delete method';
+
+      $role = Role::findOrFail($id);
+      $role->delete($id);
+      flash('The role has been deleted successfully', 'success');
+      return redirect('roles/create');
     }
 }
