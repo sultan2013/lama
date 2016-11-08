@@ -20,9 +20,9 @@ class RoleController extends Controller
 
 // index method
     public function index(){
-
+     $text_alignment = "text-right";
      $roles = (new Role)->get();
-      return view('roles.index',compact('roles'));
+      return view('roles.index',compact('roles','text_alignment'));
     }
 
 
@@ -55,7 +55,8 @@ public function create(){
 
     }
     public function show($id){
-      return 'show method';
+      $role = Role::findOrFail($id);
+      return view('roles.show',compact('role'));
     }
     public function destroy($id){
 
