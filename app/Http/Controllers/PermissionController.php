@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Permission;
+
+use App\Http\Requests\CreatePermissionRequest;
+use App\Http\Requests\EditPermissionRequest;
 
 class PermissionController extends Controller
 {
@@ -11,7 +15,9 @@ class PermissionController extends Controller
   public function index()
   {
       //
-    return "index page";
+      $text_alignment = "text-right";
+      $permissions = (new Permission)->get();
+       return view('permissions.index',compact('permissions','text_alignment'));
 
   }
 
@@ -19,7 +25,8 @@ class PermissionController extends Controller
    public function create()
    {
        //
-       return "create form";
+       $permissions = (new Permission)->get();
+        return view('permissions.create',compact('permissions'));
    }
 
    /**
@@ -28,10 +35,12 @@ class PermissionController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-   public function store(Request $request)
+   public function store(CreatePermissionRequest $request)
    {
        //
-       return "store method";
+       $permission = Permission::create($request->all());
+       flash('The permission has been created successfully', 'success');
+       return back();
    }
 
    /**
@@ -55,7 +64,9 @@ class PermissionController extends Controller
    public function edit($id)
    {
        //
-       return "edit form";
+       $_permission = Permission::findOrFail($id);
+       $permissions = Permission::all();
+       return view('permissions.edit',compact('_permission','permissions'));
    }
 
    /**
@@ -65,10 +76,20 @@ class PermissionController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-   public function update(Request $request, $id)
+   public function update(EditPermissionRequest $request, $id)
    {
        //
-       return "update method";
+       $permission = Permission::findOrFail($id);
+       //if the entered values are the same as the database value don't edit
+       if($permission->name == $request->name && $permission->label == $request->label)
+       {
+         flash('There is nothing to edit', 'warning');
+         return back();
+
+       }
+       $permission->update($request->all());
+       flash('The permission has been updated successfully', 'success');
+       return redirect('permissions/create');
 
    }
 
@@ -81,7 +102,10 @@ class PermissionController extends Controller
    public function destroy($id)
    {
        //
-       return "delete method";
+       $permission = Permission::findOrFail($id);
+       $permission->delete($id);
+       flash('The permission has been deleted successfully', 'success');
+       return redirect('permissions/create');
    }
 
 
