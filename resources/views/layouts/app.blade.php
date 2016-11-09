@@ -57,7 +57,7 @@
                         <ul class="nav navbar-nav">
                           <li class="active"><a href="{{route('users.index')}}">Users</a></li>
                           <li><a href="{{route('roles.index')}}">Roles</a></li>
-                          <li><a href="#">Permissions</a></li>
+                          <li><a href="{{route('permissions.index')}}">Permissions</a></li>
                           <li><a href="{{url('/home')}}">Home</a></li>
                         </ul>
                         <!--------------- menu ----- -->
