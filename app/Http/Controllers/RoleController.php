@@ -50,6 +50,13 @@ public function create(){
     public function update($id ,UpdateRoleRequest $request){
 
      $role = Role::findOrFail($id);
+     //if the entered values are the same as the database value don't edit
+     if($role->name == $request->name && $role->label == $request->label)
+     {
+       flash('There is nothing to edit', 'warning');
+       return back();
+
+     }
      $role->update($request->all());
      flash('The role has been updated successfully', 'success');
      return redirect('roles/create');
