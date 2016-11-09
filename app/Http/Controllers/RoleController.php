@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateRoleRequest;
+use App\Http\Requests\UpdateRoleRequest;
 use App\Role;
 class RoleController extends Controller
 {
@@ -46,7 +47,7 @@ public function create(){
       $roles = Role::all();
       return view('roles.edit',compact('_role','roles'));
     }
-    public function update($id ,CreateRoleRequest $request){
+    public function update($id ,UpdateRoleRequest $request){
 
      $role = Role::findOrFail($id);
      $role->update($request->all());
