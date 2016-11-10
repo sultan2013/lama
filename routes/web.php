@@ -21,3 +21,11 @@ Route::get('/home', 'HomeController@index');
 Route::resource('roles', 'RoleController');
 Route::resource('users', 'UserController');
 Route::resource('permissions', 'PermissionController');
+
+Route::get('/add_permissions_to_roles',function(){
+  return "here you can connect permission to roles";
+});
+
+Route::get('/add_roles_to_users',function(){
+  return "here you can connect users to roles";
+});
