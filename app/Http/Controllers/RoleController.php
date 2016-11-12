@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CreateRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use App\Role;
+use App\Permission;
 class RoleController extends Controller
 {
   /**
@@ -34,6 +35,11 @@ public function create(){
   return view('roles.create',compact('roles'));
 }
 
+
+
+
+
+
 // save new role to the database
     public function store(CreateRoleRequest $request){
 
@@ -41,6 +47,12 @@ public function create(){
       flash('The role has been created successfully', 'success');
       return back();
     }
+
+
+
+
+
+
 // edit a certain role form method
     public function edit($id){
       $_role = Role::findOrFail($id);
@@ -62,10 +74,48 @@ public function create(){
      return redirect('roles/create');
 
     }
+
+
+
+
+
+    //////////////////////////////////////////
     public function show($id){
       $role = Role::findOrFail($id);
-      return view('roles.show',compact('role'));
+      $all_permissions = Permission::all();
+      return view('roles.show',compact('role','all_permissions'));
     }
+
+
+public function addPermissions($id, Request $request){
+
+  $role = Role::findOrFail($id);
+  $permissions = $request->permissions;
+
+//  return $permissions;
+  $role->givePermission($permissions);
+
+  //return $request->permissions;
+  flash('The permissions has been added to the role successfully', 'success');
+  return back();
+}
+
+
+
+
+public function removePermissions($id, Request $request){
+  $role = Role::findOrFail($id);
+  $role->revokePermission($request->permissions);
+  flash('This role does not have these permissions any more', 'success');
+
+  return back();
+
+}
+
+
+
+
+
     public function destroy($id){
 
       $role = Role::findOrFail($id);

@@ -23,7 +23,7 @@ public function permissions(){
 
 
 // give a certain permission to a role
-public function givePermission(Permission $permission){
+public function givePermission($permission){
 
   return $this->permissions()->attach($permission);
 }// end of givePermission() method
