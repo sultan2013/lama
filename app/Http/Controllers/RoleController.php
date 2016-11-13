@@ -83,7 +83,8 @@ public function create(){
     public function show($id){
       $role = Role::findOrFail($id);
       $all_permissions = Permission::all();
-      return view('roles.show',compact('role','all_permissions'));
+      $related_permissions = $role->permissions()->get();
+      return view('roles.show',compact('role','all_permissions','related_permissions'));
     }
 
 
