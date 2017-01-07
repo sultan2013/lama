@@ -5,12 +5,34 @@
 <h3>ROLES</h3>
 <a href="{{route('roles.create')}}" class="btn btn-info">CREATE NEW ROLE</a>
 <hr>
-<ul class="list-group {{$text_alignment}}">
-  @if($roles->count() > 0)
+<div class="col-sm-12">
+  <h3>ROLES LIST</h3>
+  @if(!empty($roles))
+  <div class="table-responsive table-condensed">
+  <table class="table">
   @foreach($roles as $role)
-<a href="{{route('roles.show',$role->id)}}"class="list-group-item">{{$role->label}}</a>
-@endforeach
-@endif
-</ul>
+    <tr>
+      <td>{{$role->label}}</td>
+        <td><a href="{{route('roles.edit',$role->id)}}"
+               class="btn btn-info ">
+          <span class="glyphicon glyphicon-edit"></span></a></td>
+      <td>
+     <form method="POST" action="{{route('roles.destroy',$role->id)}}">
+       {{method_field('DELETE')}}
+       {{ csrf_field() }}
+       <button type="submit"
+                class="btn btn-danger ">
+       <span class="glyphicon glyphicon-trash"></span>
+     </button>
+     </form>
+      </td>
+    </tr>
+  @endforeach
+</table>
+
+</div><!-- end roles list -->
+  @endif
+</div> <!--end of row class -->
+
 </div><!-- end of container -->
 @endsection

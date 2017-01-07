@@ -31,7 +31,9 @@ if (!$this->roleHasPermission($permission)){
 
 // Revoke certain permission from a role
 public function revokePermission($permission){
+    if($this->roleHasPermission($permission)){
     return $this->permissions()->detach($permission);
+  }
 }// end of revokePermission() method
 
 
