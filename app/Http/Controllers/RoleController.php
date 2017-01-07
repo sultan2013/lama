@@ -107,7 +107,7 @@ return back();
 
 
 public function removePermissions($role_id, $permission_id){
-  
+
   $role = Role::findOrFail($role_id);
   $role->revokePermission($permission_id);
   flash('This role does not have these permissions any more', 'success');
@@ -123,8 +123,12 @@ public function removePermissions($role_id, $permission_id){
     public function destroy($id){
 
       $role = Role::findOrFail($id);
-      $role->delete($id);
-      flash('The role has been deleted successfully', 'success');
-      return redirect('roles/create');
+      if($role->permissions()->detach()){
+        $role->delete($id);
+        flash('The role has been deleted successfully', 'success');
+        return back();
+      }
+
+  return back();
     }
 }
