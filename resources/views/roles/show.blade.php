@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+
   <table class="table">
       <thead>
         <tr>
@@ -23,8 +24,9 @@
     </table>
 <hr>
   <h4>Related Permissions</h4>
-<div class="row">
+<div class="row" id="relatedPermissions">
    <div class="col-md-6">
+     @{{message}}
   <form method="post" action="{{url('add_permissions_to_roles')}}/{{$role->id}}">
     {{csrf_field()}}
     @if($all_permissions->count() >0)
@@ -33,24 +35,51 @@
       <input name="permissions[]"
              type="checkbox"
              value="{{$permission->id}}"
+             id="checkbox"
+             v-model="permissions"
              >
              {{$permission->label}}</label>
 
     @endforeach
     @endif
-     <button type="submit" class="btn btn-default">save</button>
+     <button type="submit" v-bind:class ="{disabled:isEmpty}" class="btn btn-default ">save</button>
   </form>
 </div><!-- end of first row -->
 <div class="col-md-6">
-  <ul class="list-group">
-    @if($related_permissions->count() > 0 )
+
+    <h3>ASSIGNED PERMISSIONS</h3>
+    @if(!empty($related_permissions))
+    <div class="table-responsive table-condensed">
+    <table class="table">
     @foreach($related_permissions as $permission)
-    <li class="list-group-item">{{$permission->label}}</li>
-@endforeach
-@endif
-  </ul>
-</div>
+      <tr>
+        <td>{{$permission->label}}</td>
+          <td><a href="{{route('permissions.edit',$permission->id)}}"
+                 class="btn btn-info ">
+            <span class="glyphicon glyphicon-edit"></span></a></td>
+        <td>
+       <form method="POST" action="{{url('role')}}/{{$role->id}}/permission/{{$permission->id}}">
+
+         {{ csrf_field() }}
+         <button type="submit"
+                  class="btn btn-danger ">
+         <span class="glyphicon glyphicon-trash"></span>
+       </button>
+       </form>
+        </td>
+      </tr>
+    @endforeach
+  </table>
+
+  </div><!-- end roles list -->
+    @endif
+  </div> <!--end of row class -->
 </div><!-- end of the row -->
   <hr>
 </div><!-- end of the container -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.7/vue.js"></script>
+
+<script>
+
+
 @endsection

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,17 @@ use Illuminate\Http\Request;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
+
+// only to test api calls and array_map()
+Route::get('/roles', function (){
+  $roles = Role::all()->toArray();
+  return array_map(function(array $roles){
+    return [
+      'role' =>$roles['name'],
+      'title'=>$roles['label']
+    ];
+
+  },$roles);
+
+
+});

@@ -90,23 +90,26 @@ public function create(){
 
 public function addPermissions($id, Request $request){
 
-  $role = Role::findOrFail($id);
-  $permissions = $request->permissions;
-
-//  return $permissions;
-  $role->givePermission($permissions);
-
+$role = Role::findOrFail($id);
+ $permission = $request->permissions;
+ //$permissions = Permission::findOrFail($permission);
+ //return $permissions;
+ if ($role->givePermission($permission)){
   //return $request->permissions;
   flash('The permissions has been added to the role successfully', 'success');
   return back();
+}
+flash('The permissions has not been added to the role ', 'warning');
+return back();
 }
 
 
 
 
-public function removePermissions($id, Request $request){
-  $role = Role::findOrFail($id);
-  $role->revokePermission($request->permissions);
+public function removePermissions($role_id, $permission_id){
+  
+  $role = Role::findOrFail($role_id);
+  $role->revokePermission($permission_id);
   flash('This role does not have these permissions any more', 'success');
 
   return back();

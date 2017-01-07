@@ -24,12 +24,24 @@ public function permissions(){
 
 // give a certain permission to a role
 public function givePermission($permission){
-
+if (!$this->roleHasPermission($permission)){
   return $this->permissions()->attach($permission);
+}
 }// end of givePermission() method
 
 // Revoke certain permission from a role
-public function revokePermission(Permission $permission){
+public function revokePermission($permission){
     return $this->permissions()->detach($permission);
 }// end of revokePermission() method
+
+
+
+// antother method to check permission
+public function roleHasPermission($permission){
+  if($this->permissions()->find($permission)->count() > 0 ){
+    return true;
+  }
+  return false;
+}
+
 }// end of the model class
