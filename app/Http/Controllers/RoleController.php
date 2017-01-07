@@ -123,7 +123,7 @@ public function removePermissions($role_id, $permission_id){
     public function destroy($id){
 
       $role = Role::findOrFail($id);
-      if($role->permissions()->count() > 0){
+      if($role->hasPermissions()){
         $role->permissions()->detach();
         $role->delete($id);
         flash('The role has been deleted successfully', 'success');

@@ -46,4 +46,12 @@ public function roleHasPermission($permission){
   return false;
 }
 
+
+// check if the role has permission associated with it
+public function hasPermissions(){
+  if($this->permissions()->count() > 0){
+    return true;
+  }
+  return false;
+}
 }// end of the model class
