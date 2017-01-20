@@ -12,11 +12,33 @@
   <table class="table">
   @foreach($roles as $role)
     <tr>
+<!-- role label -->
       <td>{{$role->label}}</td>
+<!-- END of role label -->
+
+
+<!-- role show button and adding permissions -->
+      <td>
+        <a href="{{route('roles.show',$role->id)}}"
+        class="btn btn-primary">
+         <span class="glyphicon glyphicon-eye-open"></span>
+       </a>
+      </td>
+<!-- END of role show button and adding permissions -->
+
+
+
+<!-- role edit button  -->
+
         <td><a href="{{route('roles.edit',$role->id)}}"
-               class="btn btn-info ">
+               class="btn btn-warning ">
           <span class="glyphicon glyphicon-edit"></span></a></td>
       <td>
+<!-- END role edit button  -->
+
+
+<!-- role Delete  button  -->
+
      <form method="POST" action="{{route('roles.destroy',$role->id)}}">
        {{method_field('DELETE')}}
        {{ csrf_field() }}
@@ -26,6 +48,7 @@
      </button>
      </form>
       </td>
+<!-- END role Delete  button  -->
     </tr>
   @endforeach
 </table>

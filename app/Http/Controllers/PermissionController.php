@@ -89,7 +89,8 @@ class PermissionController extends Controller
        }
        $permission->update($request->all());
        flash('The permission has been updated successfully', 'success');
-       return redirect('permissions/create');
+       return back();
+
 
    }
 
@@ -103,9 +104,12 @@ class PermissionController extends Controller
    {
        //
        $permission = Permission::findOrFail($id);
+       if(isset($permission->roles)){
+        $permission->roles()->detach();
+       }
        $permission->delete($id);
        flash('The permission has been deleted successfully', 'success');
-       return redirect('permissions/create');
+       return  back();
    }
 
 
