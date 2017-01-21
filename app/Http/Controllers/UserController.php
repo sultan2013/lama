@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
+//we load Auth\RegisterUsers to be able to use RegisterUsers Trait
+use Illuminate\Foundation\Auth\RegistersUsers;
+
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateUserRequest;
+
 use App\User;
 
 class UserController extends Controller
 {
+
+use RegistersUsers;
+
     /**
      * Display a listing of the resource.
      *
@@ -29,6 +37,7 @@ class UserController extends Controller
     public function create()
     {
         //
+        return view('users.create');
     }
 
     /**
@@ -37,9 +46,17 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
         //
+         $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+
+         $user->save();
+        flash('The User has been created successfully', 'success');
+        return back();
     }
 
     /**
@@ -51,6 +68,8 @@ class UserController extends Controller
     public function show($id)
     {
         //
+      return "show view";
+
     }
 
     /**
@@ -62,6 +81,8 @@ class UserController extends Controller
     public function edit($id)
     {
         //
+        $user = User::findOrFail($id);
+        return view('users.edit',compact('user'));
     }
 
     /**

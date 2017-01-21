@@ -26,11 +26,11 @@
   <h4>Related Permissions</h4>
 <div class="row" id="relatedPermissions">
    <div class="col-md-6">
-     @{{message}}
   <form method="post" action="{{url('add_permissions_to_roles')}}/{{$role->id}}">
     {{csrf_field()}}
     @if($all_permissions->count() >0)
     @foreach($all_permissions as $permission)
+  </br>
     <label class="checkbox-inline">
       <input name="permissions[]"
              type="checkbox"
@@ -42,6 +42,7 @@
 
     @endforeach
     @endif
+    <hr>
      <button type="submit" v-bind:class ="{disabled:isEmpty}" class="btn btn-default ">save</button>
   </form>
 </div><!-- end of first row -->
@@ -77,7 +78,6 @@
 </div><!-- end of the row -->
   <hr>
 </div><!-- end of the container -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.7/vue.js"></script>
 
 <script>
 
