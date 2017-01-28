@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CreateUserRequest;
 
 use App\User;
+use App\Role;
 
 class UserController extends Controller
 {
@@ -67,8 +68,14 @@ use RegistersUsers;
      */
     public function show($id)
     {
+        $user = User::findOrFail($id);
+
+        $roles = $user->roles()->get();
+        $all_roles = Role::all();
+
+
         //
-      return "show view";
+      return view('users.show',compact('user','all_roles'));
 
     }
 

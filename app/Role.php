@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Permission;
+use App\User;
 
 class Role extends Model
 {
@@ -21,6 +22,11 @@ public function permissions(){
 
 }// end of permissions() method
 
+
+//relationship with users
+public function users(){
+  return $this->belongsToMany(User::class);
+}//end of users() method
 
 // give a certain permission to a role
 public function givePermission($permission){
@@ -54,4 +60,25 @@ public function hasPermissions(){
   }
   return false;
 }
+
+
+// asign role to a given user 
+
+public function assignToUserRole($role){
+
+   if(!$this->userHasRole($role)){
+  $this->users()->attach($role);
+}
+}
+
+
+//check if the user already have the role
+
+public function userHasRole($role){
+  if($this->users()->find($role)->count() > 0){
+    return true;
+  }
+    return false;
+}
+
 }// end of the model class
