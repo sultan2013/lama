@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
-@section('content')
-<div class="container">
+@section('section')
 
+
+<div class="container">
   <table class="table">
       <thead>
         <tr>
@@ -79,7 +80,6 @@
   <hr>
 </div><!-- end of the container -->
 
-<script>
 
 
 @endsection
