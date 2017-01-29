@@ -53,20 +53,17 @@
                                            <span class="glyphicon glyphicon-eye-open"></span>
                                          </a>
                                         </td>
-                                        <td>
-                                          
+                                     
                                     <!-- role edit button  -->
 
                                             <td><a href="{{route('roles.edit',$role->id)}}"
                                                    class="btn btn-warning ">
                                               <span class="glyphicon glyphicon-edit"></span></a></td>
-                                          <td>
+                                          </td>
                                     <!-- END role edit button  -->
 
-                                        </td>
+                                    
                                         <td>
-                                          
-
                                     <!-- role Delete  button  -->
 
                                          <form method="POST" action="{{route('roles.destroy',$role->id)}}">
@@ -80,7 +77,7 @@
                                           </td>
                                     <!-- END role Delete  button  -->
 
-                                        </td>
+                                       
                                     </tr>
                                 @endforeach
                                 @endif
