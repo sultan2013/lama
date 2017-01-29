@@ -53,17 +53,17 @@
                                            <span class="glyphicon glyphicon-eye-open"></span>
                                          </a>
                                         </td>
-                                        <td>
+                                        
                                           
                                     <!-- role edit button  -->
 
                                             <td><a href="{{route('roles.edit',$role->id)}}"
                                                    class="btn btn-warning ">
                                               <span class="glyphicon glyphicon-edit"></span></a></td>
-                                          <td>
+                                          
                                     <!-- END role edit button  -->
 
-                                        </td>
+                                        
                                         <td>
                                           
 
