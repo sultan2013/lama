@@ -70,12 +70,13 @@ use RegistersUsers;
     {
         $user = User::findOrFail($id);
 
-        $roles = $user->roles()->get();
+       
         $all_roles = Role::all();
+        $related_roles = $user->roles()->get();
 
-
+         
         //
-      return view('users.show',compact('user','all_roles'));
+      return view('users.show',compact('user','all_roles','related_roles'));
 
     }
 

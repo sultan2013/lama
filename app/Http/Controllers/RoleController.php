@@ -7,13 +7,21 @@ use App\Http\Requests\CreateRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use App\Role;
 use App\Permission;
+use App\User;
 class RoleController extends Controller
 {
+
   /**
    * Create a new controller instance.
    *
    * @return void
    */
+
+protected $id;
+protected $model;
+protected $request;
+protected $test;
+
   public function __construct()
   {
       $this->middleware('auth');
@@ -117,8 +125,39 @@ public function removePermissions($role_id, $permission_id){
 }
 
 
+public function assignRoles($id, Request $request){
+$user = User::findOrFail($id);
+$roles = $request->data;
+$this->setValues($user,$roles);
+return $this->manyToManyRelations($this->model,$this->request);
+}// end of assignRoles method
 
 
+public function setValues($model,$request){
+ $this->model = $model;
+ $this->request = $request;
+}
+
+
+
+public function manyToManyRelations($model,$request){
+
+   if ($model->add($request)){
+  //return $request->permissions;
+  flash('The roles have been added to the user successfully', 'success');
+  return back();
+}
+flash('The roles have not been added to the user ', 'warning');
+return back();
+
+}
+
+
+public function testTrait(){
+  
+  //return "not yet";
+  return $this->test();
+}
 
     public function destroy($id){
 

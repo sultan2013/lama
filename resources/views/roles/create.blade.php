@@ -5,7 +5,7 @@
 <!--- alert for add new role update new role or delete new role -->
 @include('flash::message')
 @include('errors.list')
-<!-- end of flash message --->
+<!-- end of flash message -->
 
   <div class="row">
     <div class="col-sm-6">

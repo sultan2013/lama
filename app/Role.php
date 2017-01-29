@@ -64,21 +64,14 @@ public function hasPermissions(){
 
 // asign role to a given user 
 
-public function assignToUserRole($role){
+public function assignToUserRole($role, User $user){
 
    if(!$this->userHasRole($role)){
-  $this->users()->attach($role);
+  $user->roles->attach($role);
 }
 }
 
 
-//check if the user already have the role
 
-public function userHasRole($role){
-  if($this->users()->find($role)->count() > 0){
-    return true;
-  }
-    return false;
-}
 
 }// end of the model class

@@ -24,6 +24,8 @@ Route::resource('permissions', 'PermissionController');
 
 Route::post('/add_permissions_to_roles/{id}','RoleController@addPermissions');
 Route::post('/role/{role}/permission/{permission}','RoleController@removePermissions');
-Route::get('/add_roles_to_users',function(){
-  return "here you can connect users to roles";
-});
+Route::post('/user/{id}/addroles','RoleController@assignRoles')->name('roles.assignRoles');
+
+Route::get('testtrait','RoleController@testTrait');
+
+define('ADMIN','admin/');

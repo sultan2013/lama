@@ -47,4 +47,22 @@ public function revokeRole(Role $role){
 }// end of revokePermission() method
 
 
+// add roles to a user
+public function add($roles){
+    if(!$this->userHasRole($roles)){
+    $this->roles()->attach($roles);
+}
+}
+
+
+
+//check if the user already have the role
+
+public function userHasRole($role){
+  if($this->roles()->find($role)->count() > 0){
+    return true;
+  }
+    return false;
+}
+
 }// end of user Model
