@@ -1,6 +1,6 @@
-@extends('layouts.app')
-
-@section('section')
+@extends('layouts.admin_layout')
+@include('layouts.top_bar')
+@section('dashboard')
 
 
 <div class="container">

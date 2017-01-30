@@ -48,7 +48,7 @@
                                         <td>{{$role->name}}</td>
                                         <td>{{$role->label}}</td>
                                         <td>
-                                          <a href="{{route('roles.show',$role->id)}}"
+                                          <a href="{{route('roles.show', $role->id)}}"
                                           class="btn btn-primary">
                                            <span class="glyphicon glyphicon-eye-open"></span>
                                          </a>
