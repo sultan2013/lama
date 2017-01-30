@@ -2,8 +2,21 @@
 @include('layouts.top_bar')
 @section('dashboard')
 
-
-<div class="container">
+<!-- the upper part that shows the role details -->
+<section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>DASHBOARD</h2>
+            </div>
+            <!-- Basic Table -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                ROLES
+                                <small>Show - Create - Edit - Delete Roles</small>
+                            </h2>
   <table class="table">
       <thead>
         <tr>
@@ -23,33 +36,52 @@
 
       </tbody>
     </table>
-<hr>
-  <h4>Related Permissions</h4>
-<div class="row" id="relatedPermissions">
-   <div class="col-md-6">
-  <form method="post" action="{{url('add_permissions_to_roles')}}/{{$role->id}}">
-    {{csrf_field()}}
-    @if($all_permissions->count() >0)
-    @foreach($all_permissions as $permission)
-  </br>
-    <label class="checkbox-inline">
-      <input name="permissions[]"
-             type="checkbox"
-             value="{{$permission->id}}"
-             id="checkbox"
-             v-model="permissions"
-             >
-             {{$permission->label}}</label>
-
-    @endforeach
-    @endif
-    <hr>
-     <button type="submit" v-bind:class ="{disabled:isEmpty}" class="btn btn-default ">save</button>
-  </form>
+</div></div></div></div></div></section>
+<!-- END the upper part that shows the role details -->
+<!-- the  part that shows related permissions -->
+<section class="content">
+        <div class="container-fluid">
+            <!-- Basic Table -->
+          <div class="row clearfix">
+            <div class="col-md-6">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                Related Permissions
+                                <small>Show - Create - Edit - Delete Roles</small>
+                            </h2>
+                          </div>
+                <form method="post" action="{{url('add_permissions_to_roles')}}/{{$role->id}}">
+                  {{csrf_field()}}
+                  @if($all_permissions->count() >0)
+                  @foreach($all_permissions as $permission)
+            
+                  <div class="demo-checkbox"">
+                    <input name="permissions[]"
+                           type="checkbox"
+                           value="{{$permission->id}}"
+                           id="md_checkbox_1" class="chk-col-red" 
+                           >
+                         <label>{{$permission->label}}</label>
+                   </div>
+                  @endforeach
+                  @endif
+                  <hr>
+                   <button type="submit" v-bind:class ="{disabled:isEmpty}" class="btn btn-default ">save</button>
+                </form>
 </div><!-- end of first row -->
-<div class="col-md-6">
+</div>
 
-    <h3>ASSIGNED PERMISSIONS</h3>
+
+
+<div class="col-md-6">
+      <div class="card">
+              <div class="header">
+                    <h2>
+                    ASSIGNED PERMISSIONS
+                        <small>Show - Create - Edit - Delete Roles</small>
+                    </h2>
+</div>
     @if(!empty($related_permissions))
     <div class="table-responsive table-condensed">
     <table class="table">
@@ -79,7 +111,9 @@
 </div><!-- end of the row -->
   <hr>
 </div><!-- end of the container -->
+</div>
 
+</section>
 
 
 @endsection

@@ -1,7 +1,6 @@
-@extends('layouts.app')
-
-@section('content')
-
+@extends('layouts.admin_layout')
+@include('layouts.top_bar')
+@section('dashboard')
 <div class="container">
 <!--- alert for add new role update new role or delete new role -->
 @include('flash::message')
