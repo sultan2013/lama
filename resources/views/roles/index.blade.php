@@ -5,7 +5,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
-                <h2>DASHBOARD</h2>
+                <h2>DASHBOARD LAMA :)</h2>
             </div>
             <!-- Basic Table -->
             <div class="row clearfix">
