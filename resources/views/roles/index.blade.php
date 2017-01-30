@@ -53,28 +53,23 @@
                                            <span class="glyphicon glyphicon-eye-open"></span>
                                          </a>
                                         </td>
-<<<<<<< HEAD
-                                     
-=======
-                                        
-                                          
->>>>>>> a59d21563f8176f0a03af0aabe55c863197cf468
+
                                     <!-- role edit button  -->
 
                                             <td><a href="{{route('roles.edit',$role->id)}}"
                                                    class="btn btn-warning ">
                                               <span class="glyphicon glyphicon-edit"></span></a></td>
-<<<<<<< HEAD
+
                                           </td>
                                     <!-- END role edit button  -->
 
                                     
-=======
+
                                           
                                     <!-- END role edit button  -->
 
                                         
->>>>>>> a59d21563f8176f0a03af0aabe55c863197cf468
+
                                         <td>
                                     <!-- role Delete  button  -->
 
