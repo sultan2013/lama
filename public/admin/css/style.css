@@ -2158,7 +2158,8 @@
 
 .demo-checkbox label,
 .demo-radio-button label {
-  min-width: 150px; }
+  min-width: 150px;
+  margin-left: 30px; }
 
 .demo-knob-chart div {
   margin-right: 15px; }
@@ -2476,10 +2477,12 @@ section.content {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
-  border-radius: 2px;
+  border-radius: 0px;
   border: none;
   font-size: 13px;
-  outline: none; }
+  outline: none;
+  align-self: center;
+   }
   .btn:not(.btn-link):not(.btn-circle):hover {
     outline: none; }
   .btn:not(.btn-link):not(.btn-circle) i {
@@ -2521,7 +2524,7 @@ section.content {
 .btn-default:hover,
 .btn-default:active,
 .btn-default:focus {
-  background-color: #fff !important; }
+  background-color: #2196F3 !important; }
 
 .btn-group,
 .btn-group-vertical {
@@ -7999,4 +8002,10 @@ html.ie11 .dropdown-menu ul.menu li a {
 
 html.ie11 .bs-searchbox .form-control {
   width: 90%; }
+
+
+
+
+
+
 

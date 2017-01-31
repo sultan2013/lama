@@ -39,7 +39,7 @@
 </div></div></div></div></div></section>
 <!-- END the upper part that shows the role details -->
 <!-- the  part that shows related permissions -->
-<section class="content">
+<section class="content" style="margin-top: 10px;">
         <div class="container-fluid">
             <!-- Basic Table -->
           <div class="row clearfix">
@@ -51,7 +51,7 @@
                                 <small>Show - Create - Edit - Delete Roles</small>
                             </h2>
                           </div>
-                <form method="post" action="{{url('add_permissions_to_roles')}}/{{$role->id}}">
+                <form style="margin-top: 20px ;" method="post" action="{{url('add_permissions_to_roles')}}/{{$role->id}}">
                   {{csrf_field()}}
                   @if($all_permissions->count() >0)
                   @foreach($all_permissions as $permission)
@@ -67,7 +67,7 @@
                   @endforeach
                   @endif
                   <hr>
-                   <button type="submit" v-bind:class ="{disabled:isEmpty}" class="btn btn-default ">save</button>
+                   <button style="margin: 0px 0px 20px 30px ;" type="submit" v-bind:class ="{disabled:isEmpty}" class="btn btn-default ">save</button>
                 </form>
 </div><!-- end of first row -->
 </div>
