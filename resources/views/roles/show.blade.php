@@ -38,53 +38,17 @@
     </table>
 </div></div></div></div></div></section>
 <!-- END the upper part that shows the role details -->
-<!-- the  part that shows related permissions -->
-<section class="content" style="margin-top: 10px;">
-<div class="container-fluid">
-            <!-- Basic Table -->
-<div class="row clearfix">
-<div class="col-md-12">
-<div class="card">
-<div class="header">
-    <h2>
-     Related Permissions
-    <small>Show - Create - Edit - Delete Roles</small>
-    </h2>
-</div>
-   <form style="margin-top: 20px ;" method="post" action="{{url('add_permissions_to_roles')}}/{{$role->id}}">
-    {{csrf_field()}}
-                  @if($all_permissions->count() >0)
-          <select multiple class="form-control" id="sel2" name="permissions[]"> 
-                  @foreach($all_permissions as $permission)
-                  <option value="{{$permission->id}}">{{$permission->label}}</option>
-                  @endforeach
-                  @endif
-        </select>
-
-                   <button style="margin: 0px 0px 20px 30px ;" type="submit" v-bind:class ="{disabled:isEmpty}" class="btn btn-default ">save</button>
-</form>
-</div><!-- end of first row -->
-</div><!-- end of col-md-12 -->
-</div><!-- end of row-clearfix -->
-</div><!-- end of container-fluid -->
-</section>
-
-
-
-
-<section class="content" style="margin-top: 10px;">
- <div class="container-fluid">
-            <!-- Basic Table -->
-<div class="row clearfix">
-<div class="col-md-12">
-<div class="card">
-<div class="header">
-      <h2>
-       ASSIGNED PERMISSIONS
-      <small>Show - Create - Edit - Delete Roles</small>
-      </h2>
-</div>
-    @if(!empty($related_permissions))
+<section class="content">
+  <div class="row">
+      <div class="col-md-12">
+          <div class="card">
+              <div class="header">
+                   <h1>Related Permissions </h1>
+                   <small>tesdklsfjsl dkfjlsdkfj </small>
+              </div> <!-- end of header -->
+<div>
+  <!-- start of the code -->
+ @if(!empty($related_permissions))
     <div class="table-responsive table-condensed">
     <table class="table">
     @foreach($related_permissions as $permission)
@@ -109,11 +73,47 @@
 </div>
   </div><!-- end roles list -->
     @endif
-    </div> <!-- end of card -->
-  </div> <!--end of col-ms-12 -->
-</div><!-- end of the row-clearfix -->
-</div><!-- end of the container -->
-</section>
 
+<!-- end of the code -->
+</div>
+
+          </div> <!-- end of card class -->
+      </div> <!-- end of col-md-12 -->
+  </div> <!-- end of row class -->
+</section><!-- end of permission section -->
+
+
+
+<section class="content">
+  <div class="row">
+      <div class="col-md-12">
+          <div class="card">
+              <div class="header">
+                   <h1>Related Permissions </h1>
+                   <small>tesdklsfjsl dkfjlsdkfj </small>
+              </div> <!-- end of header -->
+             
+<!-- start of the code -->
+<div>
+   <form style="margin-top: 20px ;" method="post" action="{{url('add_permissions_to_roles')}}/{{$role->id}}">
+    {{csrf_field()}}
+                  @if($all_permissions->count() >0)
+          <select multiple class="form-control"  name="permissions[]"> 
+                  @foreach($all_permissions as $permission)
+                  <option value="{{$permission->id}}">{{$permission->label}}</option>
+                  @endforeach
+                  @endif
+        </select>
+
+                   <button style="margin: 0px 0px 20px 30px ;" type="submit" v-bind:class ="{disabled:isEmpty}" class="btn btn-default ">save</button>
+</form>
+</div>
+<!-- end of the code -->
+
+          </div> <!-- end of card class -->
+
+      </div> <!-- end of col-md-12 -->
+  </div> <!-- end of row class -->
+</section><!-- end of permission section -->
 
 @endsection
