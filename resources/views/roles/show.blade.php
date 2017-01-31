@@ -40,47 +40,49 @@
 <!-- END the upper part that shows the role details -->
 <!-- the  part that shows related permissions -->
 <section class="content" style="margin-top: 10px;">
-        <div class="container-fluid">
+<div class="container-fluid">
             <!-- Basic Table -->
-          <div class="row clearfix">
-            <div class="col-md-6">
-                    <div class="card">
-                        <div class="header">
-                            <h2>
-                                Related Permissions
-                                <small>Show - Create - Edit - Delete Roles</small>
-                            </h2>
-                          </div>
-                <form style="margin-top: 20px ;" method="post" action="{{url('add_permissions_to_roles')}}/{{$role->id}}">
-                  {{csrf_field()}}
+<div class="row clearfix">
+<div class="col-md-12">
+<div class="card">
+<div class="header">
+    <h2>
+     Related Permissions
+    <small>Show - Create - Edit - Delete Roles</small>
+    </h2>
+</div>
+   <form style="margin-top: 20px ;" method="post" action="{{url('add_permissions_to_roles')}}/{{$role->id}}">
+    {{csrf_field()}}
                   @if($all_permissions->count() >0)
+          <select multiple class="form-control" id="sel2" name="permissions[]"> 
                   @foreach($all_permissions as $permission)
-            
-                  <div class="demo-checkbox"">
-                    <input name="permissions[]"
-                           type="checkbox"
-                           value="{{$permission->id}}"
-                           id="md_checkbox_1" class="chk-col-red" 
-                           >
-                         <label>{{$permission->label}}</label>
-                   </div>
+                  <option value="{{$permission->id}}">{{$permission->label}}</option>
                   @endforeach
                   @endif
-                  <hr>
+        </select>
+
                    <button style="margin: 0px 0px 20px 30px ;" type="submit" v-bind:class ="{disabled:isEmpty}" class="btn btn-default ">save</button>
-                </form>
+</form>
 </div><!-- end of first row -->
-</div>
+</div><!-- end of col-md-12 -->
+</div><!-- end of row-clearfix -->
+</div><!-- end of container-fluid -->
+</section>
 
 
 
-<div class="col-md-6">
-      <div class="card">
-              <div class="header">
-                    <h2>
-                    ASSIGNED PERMISSIONS
-                        <small>Show - Create - Edit - Delete Roles</small>
-                    </h2>
+
+<section class="content" style="margin-top: 10px;">
+ <div class="container-fluid">
+            <!-- Basic Table -->
+<div class="row clearfix">
+<div class="col-md-12">
+<div class="card">
+<div class="header">
+      <h2>
+       ASSIGNED PERMISSIONS
+      <small>Show - Create - Edit - Delete Roles</small>
+      </h2>
 </div>
     @if(!empty($related_permissions))
     <div class="table-responsive table-condensed">
@@ -104,15 +106,13 @@
       </tr>
     @endforeach
   </table>
-
+</div>
   </div><!-- end roles list -->
     @endif
-  </div> <!--end of row class -->
-</div><!-- end of the row -->
-  <hr>
+    </div> <!-- end of card -->
+  </div> <!--end of col-ms-12 -->
+</div><!-- end of the row-clearfix -->
 </div><!-- end of the container -->
-</div>
-
 </section>
 
 
