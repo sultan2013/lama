@@ -94,7 +94,7 @@
               </div> <!-- end of header -->
              
 <!-- start of the code -->
-<div>
+<div class="body">
    <form style="margin-top: 20px ;" method="post" action="{{url('add_permissions_to_roles')}}/{{$role->id}}">
     {{csrf_field()}}
                   @if($all_permissions->count() >0)
@@ -107,6 +107,13 @@
 
                    <button style="margin: 0px 0px 20px 30px ;" type="submit" v-bind:class ="{disabled:isEmpty}" class="btn btn-default ">save</button>
 </form>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
 </div>
 <!-- end of the code -->
 
