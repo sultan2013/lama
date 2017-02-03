@@ -2,6 +2,7 @@
 @include('layouts.top_bar')
 @section('dashboard')
 
+
 <!-- the upper part that shows the role details -->
 <section class="content">
         <div class="container-fluid">
@@ -95,15 +96,17 @@
              
 <!-- start of the code -->
 <div class="body">
-   <form style="margin-top: 20px ;" method="post" action="{{url('add_permissions_to_roles')}}/{{$role->id}}">
-    {{csrf_field()}}
-                  @if($all_permissions->count() >0)
-          <select multiple class="form-control"  name="permissions[]"> 
+   <form method="post" action="{{url('add_permissions_to_roles')}}/{{$role->id}}">
+                  <input type="checkbox" id="basic_checkbox_2" class="filled-in" >
                   @foreach($all_permissions as $permission)
-                  <option value="{{$permission->id}}">{{$permission->label}}</option>
+                  <label for="basic_checkbox_2">
+                    
+                  {{$permission->label}}
+                  
+                  </label>
                   @endforeach
-                  @endif
-        </select>
+
+    
 
                    <button style="margin: 0px 0px 20px 30px ;" type="submit" v-bind:class ="{disabled:isEmpty}" class="btn btn-default ">save</button>
 </form>
